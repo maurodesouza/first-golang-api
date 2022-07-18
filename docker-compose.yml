@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    build: ./
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+  database:
+    container_name: database
+    image: 'bitnami/postgresql'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=api_todo
